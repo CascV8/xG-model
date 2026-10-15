@@ -1,4 +1,4 @@
-# xg-model
+# Expected Goals model
 
 Expected goals (xG) for NHL unblocked shots, built on [puckscrape](../puckscrape).
 A gradient-boosted model trained on 2022-23 to 2024-25 play-by-play, excluding empty-net shots.
