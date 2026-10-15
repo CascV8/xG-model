@@ -1,0 +1,69 @@
+{
+  "train_seasons": [
+    "2022",
+    "2023",
+    "2024"
+  ],
+  "test_season": "2025",
+  "test": {
+    "model": {
+      "shots": 111066,
+      "goals": 7572,
+      "xg": 7922.2,
+      "log_loss": 0.2154,
+      "auc": 0.7736,
+      "brier": 0.05835
+    },
+    "baseline_distance_angle": {
+      "shots": 111066,
+      "goals": 7572,
+      "xg": 7676.2,
+      "log_loss": 0.2306,
+      "auc": 0.7139,
+      "brier": 0.06152
+    }
+  },
+  "moneypuck_benchmark": {
+    "matched_share": 0.9962,
+    "model": {
+      "shots": 110642,
+      "goals": 7562,
+      "xg": 7886.7,
+      "log_loss": 0.2156,
+      "auc": 0.774,
+      "brier": 0.05846
+    },
+    "moneypuck": {
+      "shots": 110642,
+      "goals": 7562,
+      "xg": 7588.9,
+      "log_loss": 0.2179,
+      "auc": 0.7682,
+      "brier": 0.05865
+    }
+  },
+  "feature_importance_log_loss": {
+    "distance": 0.02821,
+    "y_abs": 0.01814,
+    "secs_since_prev": 0.01087,
+    "shot_type": 0.00966,
+    "prev_event_type": 0.00277,
+    "angle": 0.00243,
+    "speed_from_prev": 0.00176,
+    "x": 0.00144,
+    "rebound_angle_change": 0.00136,
+    "opp_skaters": 0.00105,
+    "prev_x": 0.00039,
+    "prev_y_abs": 0.00035,
+    "dist_from_prev": 0.00028,
+    "rush": 9e-05,
+    "rebound": 7e-05,
+    "score_diff": 6e-05,
+    "period": 5e-05,
+    "shooter_skaters": 4e-05,
+    "is_home": 0.0,
+    "own_goalie_pulled": 0.0,
+    "prev_same_team": -2e-05,
+    "period_seconds": -0.00015
+  }
+}
