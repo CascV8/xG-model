@@ -17,6 +17,3 @@ from xg_model import predict
 
 shots = predict.score(ps.nhl.play_by_play(2025020001))   # one row per shot, with an xg column
 ```
-
-- User manual: https://claude.ai/code/artifact/b65071f4-c67a-4424-b32a-7310ab06d445
-- How it was built: https://claude.ai/code/artifact/fad10bed-2e96-4e92-b414-91b7e0611906
