@@ -10,7 +10,7 @@ requires-python = ">=3.13"
 dependencies = [
     "joblib>=1.6.0",
     "matplotlib>=3.11.2",
-    "puckscrape",
+    "puckscrape @ git+https://github.com/CascV8/Puckscrape.git",
     "pyarrow>=26.0.0",
     "scikit-learn>=1.9.1",
 ]
@@ -21,9 +21,6 @@ xg-model = "xg_model:main"
 [build-system]
 requires = ["uv_build>=0.8.15,<0.9.0"]
 build-backend = "uv_build"
-
-[tool.uv.sources]
-puckscrape = { path = "../puckscrape", editable = true }
 
 [dependency-groups]
 dev = [
