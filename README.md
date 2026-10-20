@@ -10,8 +10,8 @@ its season total runs 4.6% high, as 2025-26 shots were logged closer to the net 
 Needs Python 3.13+ and [uv](https://docs.astral.sh/uv/). puckscrape is installed from GitHub automatically.
 
 ```
-git clone https://github.com/CascV8/xg-model.git
-cd xg-model
+git clone https://github.com/CascV8/xG-model.git
+cd xG-model
 uv sync
 ```
 
