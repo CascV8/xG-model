@@ -37,6 +37,19 @@ def _angle(dx, dy):
     return np.degrees(np.arctan2(np.abs(dy), dx))
 
 
+def _home_attacks_right(df: pd.DataFrame, is_home: pd.Series) -> pd.Series:
+    """Whether the home team attacks toward +x, per event. The NHL's home_team_defending_side
+    starts in 2019-20; before that (and where it's blank) it's read from the zone codes: an
+    event in its team's offensive zone at x > 0 means that team attacks right. Majority vote
+    per game and period."""
+    side = df["home_team_defending_side"] if "home_team_defending_side" in df else pd.Series(None, index=df.index)
+    zone = df["zone_code"].map({"O": 1.0, "D": -1.0}) if "zone_code" in df else pd.Series(np.nan, index=df.index)
+    vote = (np.sign(df["x_coord"]) * zone * np.where(is_home, 1.0, -1.0)).where(df["event_team"].notna())
+    inferred = vote.groupby([df["game_id"], df["period"]]).transform("sum") > 0
+    known = side.isin(["left", "right"])
+    return pd.Series(np.where(known, side == "left", inferred), index=df.index)
+
+
 def build_shots(pbp: pd.DataFrame) -> pd.DataFrame:
     df = pbp.sort_values(["game_id", "sort_order"]).reset_index(drop=True)
     # NA-aware string dtype makes `==` return NA; plain objects compare False.
@@ -53,7 +66,7 @@ def build_shots(pbp: pd.DataFrame) -> pd.DataFrame:
 
     # --- rotate every event into its own team's attacking frame -------------
     is_home = df["event_team"] == df["home_team"]
-    home_attacks_right = df["home_team_defending_side"] == "left"
+    home_attacks_right = _home_attacks_right(df, is_home)
     sign = np.where(is_home == home_attacks_right, 1.0, -1.0)
     df["is_home"] = is_home.astype(int)
     df["sign"] = sign
