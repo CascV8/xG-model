@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import json
 import logging
+import os
+from pathlib import Path
 
 import joblib
 import numpy as np
@@ -18,7 +20,8 @@ from .features import FEATURES, build_shots
 
 log = logging.getLogger("xg_model.train")
 
-MODELS = collect.ROOT / "models"
+# The trained model's folder: models/ beside the code, or XG_MODELS (an install from GitHub has no models/ of its own)
+MODELS = Path(os.environ["XG_MODELS"]) if os.environ.get("XG_MODELS") else collect.ROOT / "models"
 REPORTS = collect.ROOT / "reports"
 MODEL_PATH = MODELS / "xg.joblib"
 
